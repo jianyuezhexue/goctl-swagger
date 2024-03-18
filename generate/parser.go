@@ -305,7 +305,25 @@ func renderServiceRoutes(service spec.Service, groups []spec.Group, paths swagge
 					"200": swaggerResponseObject{
 						Description: desc,
 						Schema: swaggerSchemaObject{
-							schemaCore: respSchema,
+							Properties: &swaggerSchemaObjectProperties{
+								{
+									Key: "code",
+									Value: schemaCore{
+										Type:   "integer",
+										Format: "int32",
+									},
+								},
+								{
+									Key: "message",
+									Value: schemaCore{
+										Type: "string",
+									},
+								},
+								{
+									Key:   "data",
+									Value: respSchema,
+								},
+							},
 						},
 					},
 				},
